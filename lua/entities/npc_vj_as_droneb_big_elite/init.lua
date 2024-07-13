@@ -1,19 +1,16 @@
+include("entities/npc_vj_as_droneb_big/init.lua")
 AddCSLuaFile("shared.lua")
-include('shared.lua')
+include("shared.lua")
 /*-----------------------------------------------
-	*** Copyright (c) 2012-2021 by DrVrej, All rights reserved. ***
+	*** Copyright (c) 2012-2024 by DrVrej, All rights reserved. ***
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.StartHealth = GetConVarNumber("vj_as_dronebb_elite_h")
-ENT.MeleeAttackDamage = GetConVarNumber("vj_as_dronebb_elite_d")
+ENT.StartHealth = 400
+ENT.MeleeAttackDamage = 45
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
-	self:SetCollisionBounds(Vector(35, 35, 75), Vector(-35, -35, 0))
-	self:SetSkin((math.random(1,2) == 1 and 1) or 3)
+	self:SetCollisionBounds(Vector(30, 30, 70), Vector(-30, -30, 0))
+	self:SetSurroundingBounds(Vector(70, 70, 100), Vector(-70, -70, 0))
+	self:SetSkin((math.random(1, 2) == 1 and 1) or 3)
 end
-/*-----------------------------------------------
-	*** Copyright (c) 2012-2021 by DrVrej, All rights reserved. ***
-	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
-	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
------------------------------------------------*/

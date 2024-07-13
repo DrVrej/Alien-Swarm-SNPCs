@@ -1,4 +1,4 @@
-ENT.Base 			= "npc_vj_as_droneb_big"
+ENT.Base 			= "npc_vj_creature_base"
 ENT.Type 			= "ai"
 ENT.PrintName 		= "Large Beta Drone Elite"
 ENT.Author 			= "DrVrej"
