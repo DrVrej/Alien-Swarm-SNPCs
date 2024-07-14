@@ -10,8 +10,8 @@ ENT.Model = "models/VJ_AS/betadrone_big.mdl" -- The game will pick a random mode
 ENT.StartHealth = 220
 ENT.HullType = HULL_LARGE
 
-ENT.MeleeAttackDistance = 100 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-ENT.MeleeAttackDamageDistance = 120 -- How far does the damage go | false = Let the base auto calculate on initialize based on the NPC's collision bounds
+ENT.MeleeAttackDistance = 90 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
+ENT.MeleeAttackDamageDistance = 100 -- How far does the damage go | false = Let the base auto calculate on initialize based on the NPC's collision bounds
 ENT.MeleeAttackDamage = 25
 
 ENT.GeneralSoundPitch1 = 60
