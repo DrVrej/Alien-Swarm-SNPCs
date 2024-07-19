@@ -53,8 +53,7 @@ end
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	if key == "move" then
 		self:FootStepSoundCode()
-	end
-	if key == "melee_hit" then
+	elseif key == "melee_hit" then
 		self:MeleeAttackCode()
 	end
 end

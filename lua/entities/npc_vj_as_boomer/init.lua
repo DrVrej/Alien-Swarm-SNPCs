@@ -38,7 +38,7 @@ ENT.Boomer_AnimGallop = ACT_RUN
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(35, 35, 120), Vector(-35, -35, 0))
-	self:SetStepHeight(30)
+	self:SetStepHeight(60)
 
 	local sackLight = ents.Create("light_dynamic")
 	sackLight:SetKeyValue("_light", "147 112 219 200")
@@ -59,11 +59,9 @@ end
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	if key == "ASW_Boomer.FootstepWalk" or key == "ASW_Boomer.FootstepRun" then
 		self:FootStepSoundCode()
-	end
-	if key == "ASW_Boomer.MeleeWhoosh" then
+	elseif key == "ASW_Boomer.MeleeWhoosh" then
 		VJ.EmitSound(self, sdWhoosh, 70)
-	end
-	if key == "ASW_Boomer.Hit" then
+	elseif key == "ASW_Boomer.Hit" then
 		if self:GetActivity() == ACT_MELEE_ATTACK1 then -- Stomp
 			self.MeleeAttackDamage = 85
 			self.HasMeleeAttackKnockBack = false

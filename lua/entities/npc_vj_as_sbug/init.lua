@@ -46,7 +46,7 @@ ENT.Shieldbug_AnimTurnRight = -1
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnInitialize()
 	self:SetCollisionBounds(Vector(70, 70, 100), Vector(-70, -70, 0))
-	self:SetStepHeight(20)
+	self:SetStepHeight(50)
 	self.Shieldbug_AnimAttackDef = VJ.SequenceToActivity(self, "melee_attack_defend") -- ACT_MELEE_ATTACK1_DEFEND = "melee_attack_defend", "melee_attack_defend1B", "melee_attack_defend2"
 	self.Shieldbug_AnimTurnLeft = VJ.SequenceToActivity(self, "turn_left_defend")
 	self.Shieldbug_AnimTurnRight = VJ.SequenceToActivity(self, "turn_right_defend")
@@ -57,17 +57,14 @@ local defAng = Angle(0, 0, 0)
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	if key == "ASW_ShieldBug.Movement" or key == "ASW_ShieldBug.MoveDefend" then
 		self:FootStepSoundCode()
-	end
-	if key == "ASW_ShieldBug.Hit" then
+	elseif key == "ASW_ShieldBug.Hit" then
 		self:MeleeAttackCode()
-	end
-	if key == "ASW_ShieldBug.Stomp" && self:GetActivity() == ACT_ARM then
+	elseif key == "ASW_ShieldBug.Stomp" && self:GetActivity() == ACT_ARM then
 		util.ScreenShake(self:GetPos(), 16, 200, 0.5, 1500)
 		if self.HasSounds == true && self.HasAlertSounds == true then
 			VJ.EmitSound(self, "vj_alienswarm/shieldbug/stomp01.wav", 80, math.random(90, 100))
 		end
-	end
-	if key == "ASW_ShieldBug.GibSplat" then
+	elseif key == "ASW_ShieldBug.GibSplat" then
 		self:SetBodygroup(0, 1)
 		local expPos = self:GetAttachment(self:LookupAttachment("attach_explosion")).Pos
 		VJ.ApplyRadiusDamage(self, self, expPos, 160, 35, DMG_ACID, true, true)

@@ -61,11 +61,9 @@ end
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	if key == "move" then
 		self:FootStepSoundCode()
-	end
-	if key == "attack_melee" then
+	elseif key == "attack_melee" then
 		self:MeleeAttackCode()
-	end
-	if key == "alert_scream" then
+	elseif key == "alert_scream" then
 		self:PlaySoundSystem("Alert", "vj_alienswarm/shieldbug/roar.wav")
 	end
 end

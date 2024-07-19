@@ -47,11 +47,9 @@ function ENT:CustomOnInitialize()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:CustomOnAcceptInput(key, activator, caller, data)
-	print("OnAcceptInput", key, activator, caller, data)
 	if key == "move" then
 		self:FootStepSoundCode()
-	end
-	if key == "melee_hit" then
+	elseif key == "melee_hit" then
 		local curSeq = self:GetSequenceName(self:GetSequence())
 		if curSeq == "attack_backhand" or curSeq == "attack_swipe" then -- Swipe
 			self.Shieldbug_MeleeType = SHIELDBUG_MELEE_SWIPE
@@ -67,8 +65,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 			self.SoundTbl_MeleeAttackMiss = false
 		end
 		self:MeleeAttackCode()
-	end
-	if key == "shove_roar_hit" then
+	elseif key == "shove_roar_hit" then
 		util.ScreenShake(self:GetPos(), 16, 200, 0.5, 1500)
 		if self.HasSounds == true && self.HasAlertSounds == true then
 			VJ.EmitSound(self,"vj_alienswarm/shieldbug/stomp01.wav", 80, math.random(90, 100))
