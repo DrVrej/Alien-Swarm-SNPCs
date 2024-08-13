@@ -107,7 +107,7 @@ end
 local colorYellow = VJ.Color2Byte(Color(255, 221, 35))
 local defAng = Angle(0, 0, 0)
 --
-function ENT:SetUpGibesOnDeath(dmginfo,hitgroup)
+function ENT:SetUpGibesOnDeath(dmginfo, hitgroup)
 	local myPos = self:GetPos() + self:OBBCenter()
 	util.BlastDamage(self, self, myPos, 300, 60)
 	util.ScreenShake(myPos, 100, 200, 1, 2500)
