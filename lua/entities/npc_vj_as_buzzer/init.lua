@@ -24,8 +24,7 @@ ENT.NextAnyAttackTime_Melee = 0.6 -- How much time until it can use any attack a
 ENT.MeleeAttackDamage = 15
 
 ENT.HasDeathRagdoll = false -- Should the NPC spawn a corpse when it dies?
-	-- ====== Sound File Paths ====== --
--- Leave blank if you don't want any sounds to play
+	-- ====== Sound Paths ====== --
 ENT.SoundTbl_Breath = {"vj_alienswarm/buzzer/idle01.wav","vj_alienswarm/buzzer/idle02.wav"}
 ENT.SoundTbl_Alert = {"vj_alienswarm/buzzer/edited_onfire.wav"}
 ENT.SoundTbl_BeforeMeleeAttack = {"vj_alienswarm/buzzer/attack01.wav","vj_alienswarm/buzzer/attack02.wav","vj_alienswarm/buzzer/attack03.wav"}
