@@ -8,7 +8,7 @@ include("shared.lua")
 ENT.Model = "models/VJ_AS/queen.mdl" -- Model(s) to spawn with | Picks a random one if it's a table
 ENT.StartHealth = 8000
 ENT.HullType = HULL_MEDIUM_TALL
-ENT.VJTag_ID_Boss = true -- Is this a huge monster?
+ENT.VJTag_ID_Boss = true
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"} -- NPCs with the same class with be allied to each other
 ENT.BloodColor = "Yellow" -- The blood type, this will determine what it should use (decal, particle, etc.)
@@ -21,10 +21,10 @@ ENT.MeleeAttackDamageDistance = 280 -- How far does the damage go | false = Let 
 ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calculates the time until it hits something
 ENT.HasMeleeAttackKnockBack = true -- If true, it will cause a knockback to its enemy
 
-ENT.HasDeathRagdoll = false -- Should the NPC spawn a corpse when it dies?
+ENT.HasDeathCorpse = false -- Should a corpse spawn when it's killed?
 ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
-ENT.AnimTbl_Death = ACT_DIESIMPLE -- Death Animations
-ENT.DeathAnimationTime = 8 -- Time until the NPC spawns its corpse and gets removed
+ENT.AnimTbl_Death = ACT_DIESIMPLE
+ENT.DeathAnimationTime = 8 -- How long should the death animation play?
 ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
 ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time system for the footstep sound code, allowing you to use other ways like model events
 	-- ====== Sound Paths ====== --
@@ -48,7 +48,7 @@ ENT.BeforeLeapAttackSoundLevel = 100
 ENT.PainSoundLevel = 100
 ENT.DeathSoundLevel = 100
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnInitialize()
+function ENT:Init()
 	self:SetCollisionBounds(Vector(100, 100, 250), Vector(-100, -100, 5))
 	self:SetStepHeight(78)
 end
@@ -57,7 +57,7 @@ function ENT:GetSightDirection()
 	return self:GetAttachment(self:LookupAttachment("SpitSource")).Ang:Forward()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnAcceptInput(key, activator, caller, data)
+function ENT:OnInput(key, activator, caller, data)
 	if key == "move" then
 		self:FootStepSoundCode()
 	elseif key == "attack_melee" then
@@ -67,7 +67,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnAlert()
+function ENT:OnAlert(ent)
 	if self.VJ_IsBeingControlled == true then return end
 	self:VJ_ACT_PLAYACTIVITY("high_scream", true, false, true)
 end

@@ -35,7 +35,7 @@ local sdWhoosh = {"vj_alienswarm/boomer/attack01.wav", "vj_alienswarm/boomer/att
 ENT.Boomer_ControllerGallop = false
 ENT.Boomer_AnimGallop = ACT_RUN
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnInitialize()
+function ENT:Init()
 	self:SetCollisionBounds(Vector(35, 35, 120), Vector(-35, -35, 0))
 	self:SetStepHeight(60)
 
@@ -55,7 +55,7 @@ function ENT:CustomOnInitialize()
 	self.Boomer_AnimGallop = VJ.SequenceToActivity(self, "gallop")
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnAcceptInput(key, activator, caller, data)
+function ENT:OnInput(key, activator, caller, data)
 	if key == "ASW_Boomer.FootstepWalk" or key == "ASW_Boomer.FootstepRun" then
 		self:FootStepSoundCode()
 	elseif key == "ASW_Boomer.MeleeWhoosh" then
@@ -111,7 +111,7 @@ function ENT:SetUpGibesOnDeath(dmginfo, hitgroup)
 	util.BlastDamage(self, self, myPos, 300, 60)
 	util.ScreenShake(myPos, 100, 200, 1, 2500)
 	
-	if self.HasGibDeathParticles == true then
+	if self.HasGibOnDeathEffects == true then
 		local effectData = EffectData()
 		effectData:SetOrigin(myPos)
 		effectData:SetColor(colorYellow)

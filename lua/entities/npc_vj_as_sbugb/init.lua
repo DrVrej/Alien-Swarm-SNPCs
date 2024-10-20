@@ -40,12 +40,12 @@ local SHIELDBUG_MELEE_CHARGE = 2
 -- Custom
 ENT.Shieldbug_MeleeType = SHIELDBUG_MELEE_SWIPE
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnInitialize()
+function ENT:Init()
 	self:SetCollisionBounds(Vector(45, 45, 100), Vector(-45, -45, 0))
 	self:SetSurroundingBounds(Vector(150, 150, 150), Vector(-150, -150, 0))
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnAcceptInput(key, activator, caller, data)
+function ENT:OnInput(key, activator, caller, data)
 	if key == "move" then
 		self:FootStepSoundCode()
 	elseif key == "melee_hit" then
@@ -72,7 +72,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnAlert()
+function ENT:OnAlert(ent)
 	if self.VJ_IsBeingControlled == true then return end
 	if math.random(1, 2) == 1 then
 		self:VJ_ACT_PLAYACTIVITY(ACT_ARM, true, false, true)

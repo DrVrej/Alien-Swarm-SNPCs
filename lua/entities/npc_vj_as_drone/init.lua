@@ -13,7 +13,7 @@ ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"} -- NPCs with the same class with be alli
 ENT.BloodColor = "Yellow" -- The blood type, this will determine what it should use (decal, particle, etc.)
 
 ENT.HasMeleeAttack = true -- Can this NPC melee attack?
-ENT.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK1, ACT_MELEE_ATTACK2, "lunge_attack03"} -- Melee Attack Animations
+ENT.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK1, ACT_MELEE_ATTACK2, "lunge_attack03"}
 ENT.MeleeAttackDistance = 70 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
 ENT.MeleeAttackDamageDistance = 80 -- How far does the damage go | false = Let the base auto calculate on initialize based on the NPC's collision bounds
 ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calculates the time until it hits something
@@ -26,13 +26,13 @@ ENT.MeleeAttackBleedEnemyReps = 4 -- How many reps?
 
 ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
 ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time system for the footstep sound code, allowing you to use other ways like model events
-ENT.AnimTbl_CallForHelp = ACT_ARM -- Call For Help Animations
+ENT.AnimTbl_CallForHelp = ACT_ARM
 ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
-ENT.AnimTbl_Death = {"vjseq_death01","vjseq_death_fire_02","vjseq_death_fire_04","vjseq_death_fire_05","vjseq_death_fire_07","vjseq_death_fire_08"} -- Death Animations
+ENT.AnimTbl_Death = {"vjseq_death01","vjseq_death_fire_02","vjseq_death_fire_04","vjseq_death_fire_05","vjseq_death_fire_07","vjseq_death_fire_08"}
 ENT.DeathAnimationChance = 2 -- Put 1 if you want it to play the animation all the time
 	-- ====== Flinching Variables ====== --
 ENT.CanFlinch = 1 -- 0 = Don't flinch | 1 = Flinch at any damage | 2 = Flinch only from certain damages
-ENT.AnimTbl_Flinch = "flinch_small" -- If it uses normal based animation, use this
+ENT.AnimTbl_Flinch = "flinch_small" -- The regular flinch animations to play
 	-- ====== Sound Paths ====== --
 ENT.SoundTbl_FootStep = {"vj_alienswarm/drone/footstep1a.wav","vj_alienswarm/drone/footstep1b.wav"}
 ENT.SoundTbl_Idle = {"vj_alienswarm/drone/glide01.wav","vj_alienswarm/drone/glide02.wav","vj_alienswarm/drone/glide03.wav","vj_alienswarm/drone/roar01.wav","vj_alienswarm/drone/roar02.wav"}
@@ -45,7 +45,7 @@ local sdBurrow = {"vj_alienswarm/drone/burrow01.wav","vj_alienswarm/drone/burrow
 
 ENT.FootStepSoundLevel = 55
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnInitialize()
+function ENT:Init()
 	self:SetCollisionBounds(Vector(20, 20, 60), Vector(-20, -20, 0))
 	self:SetSurroundingBounds(Vector(70, 70, 100), Vector(-70, -70, 0))
 	
@@ -85,7 +85,7 @@ function ENT:CustomOnInitialize()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnAcceptInput(key, activator, caller, data)
+function ENT:OnInput(key, activator, caller, data)
 	if key == "ASW_Drone.Footstep" then
 		self:FootStepSoundCode()
 	elseif key == "ASW_Drone.Hit" then
@@ -95,7 +95,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnCallForHelp(ally, isFirst)
+function ENT:OnCallForHelp(ally, isFirst)
 	if !isFirst then return end
 	timer.Simple(1, function()
 		if IsValid(self) then
@@ -105,26 +105,30 @@ function ENT:CustomOnCallForHelp(ally, isFirst)
 	end)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnFlinch_BeforeFlinch(dmginfo, hitgroup)
-	local dmgAmt = dmginfo:GetDamage()
-	if dmgAmt > 25 then
-		self.AnimTbl_Flinch = "flinch_big"
-	elseif dmgAmt > 15 then
-		self.AnimTbl_Flinch = "flinch_medium"
-	else
-		self.AnimTbl_Flinch = "flinch_small"
+function ENT:OnFlinch(dmginfo, hitgroup, status)
+	if status == "PriorExecution" then
+		local dmgAmt = dmginfo:GetDamage()
+		if dmgAmt > 25 then
+			self.AnimTbl_Flinch = "flinch_big"
+		elseif dmgAmt > 15 then
+			self.AnimTbl_Flinch = "flinch_medium"
+		else
+			self.AnimTbl_Flinch = "flinch_small"
+		end
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnPriorToKilled(dmginfo, hitgroup)
-	-- High damage force, don't play death animation
-	if dmginfo:GetDamageForce():Length() > 10000 then
-		self.HasDeathAnimation = false
-	end
-	
-	-- Certain damage types cause it to use gibbed bodygroup AND not play death animation
-	if self:GetBodygroup(0) != 1 && self:IsDefaultGibDamageType(dmginfo:GetDamageType()) then
-		self:SetBodygroup(0, 2)
-		self.HasDeathAnimation = false
+function ENT:OnDeath(dmginfo, hitgroup, status)
+	if status == "Initial" then
+		-- High damage force, don't play death animation
+		if dmginfo:GetDamageForce():Length() > 10000 then
+			self.HasDeathAnimation = false
+		end
+		
+		-- Certain damage types cause it to use gibbed bodygroup AND not play death animation
+		if self:GetBodygroup(0) != 1 && self:IsDefaultGibDamageType(dmginfo:GetDamageType()) then
+			self:SetBodygroup(0, 2)
+			self.HasDeathAnimation = false
+		end
 	end
 end

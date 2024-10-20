@@ -19,7 +19,7 @@ ENT.GeneralSoundPitch2 = 70
 
 ENT.FootStepSoundLevel = 60
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnInitialize()
+function ENT:Init()
 	self:SetCollisionBounds(Vector(30, 30, 70), Vector(-30, -30, 0))
 	self:SetSurroundingBounds(Vector(70, 70, 100), Vector(-70, -70, 0))
 	self:SetSkin((math.random(1, 2) == 1 and 0) or 2)

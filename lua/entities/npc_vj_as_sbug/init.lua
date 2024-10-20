@@ -20,7 +20,7 @@ ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calcula
 ENT.HasMeleeAttackKnockBack = true -- If true, it will cause a knockback to its enemy
 
 ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
-ENT.AnimTbl_Death = "vjseq_death_02" -- Death Animations
+ENT.AnimTbl_Death = "vjseq_death_02"
 ENT.DeathAnimationDecreaseLengthAmount = 0.4 -- This will decrease the time until it turns into a corpse
 ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time system for the footstep sound code, allowing you to use other ways like model events
 ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
@@ -43,7 +43,7 @@ ENT.Shieldbug_AnimAttackDef = -1
 ENT.Shieldbug_AnimTurnLeft = -1
 ENT.Shieldbug_AnimTurnRight = -1
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnInitialize()
+function ENT:Init()
 	self:SetCollisionBounds(Vector(70, 70, 100), Vector(-70, -70, 0))
 	self:SetStepHeight(50)
 	self.Shieldbug_AnimAttackDef = VJ.SequenceToActivity(self, "melee_attack_defend") -- ACT_MELEE_ATTACK1_DEFEND = "melee_attack_defend", "melee_attack_defend1B", "melee_attack_defend2"
@@ -53,7 +53,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local defAng = Angle(0, 0, 0)
 --
-function ENT:CustomOnAcceptInput(key, activator, caller, data)
+function ENT:OnInput(key, activator, caller, data)
 	if key == "ASW_ShieldBug.Movement" or key == "ASW_ShieldBug.MoveDefend" then
 		self:FootStepSoundCode()
 	elseif key == "ASW_ShieldBug.Hit" then
@@ -68,7 +68,7 @@ function ENT:CustomOnAcceptInput(key, activator, caller, data)
 		local expPos = self:GetAttachment(self:LookupAttachment("attach_explosion")).Pos
 		VJ.ApplyRadiusDamage(self, self, expPos, 160, 35, DMG_ACID, true, true)
 		VJ.EmitSound(self, sdGib, 80)
-		if self.HasGibDeathParticles then
+		if self.HasGibOnDeathEffects then
 			local effectData = EffectData()
 			effectData:SetOrigin(expPos)
 			effectData:SetScale(1)
@@ -144,7 +144,7 @@ function ENT:TranslateActivity(act)
 	return self.BaseClass.TranslateActivity(self, act)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnAlert()
+function ENT:OnAlert(ent)
 	if self.VJ_IsBeingControlled == true then return end
 	if math.random(1, 2) == 1 then
 		self:VJ_ACT_PLAYACTIVITY(ACT_ARM, true, false, true)
@@ -168,10 +168,14 @@ function ENT:CustomOnMeleeAttack_Miss()
 	util.ScreenShake(self:GetPos(), 16, 100, 0.5, 1500)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnTakeDamage_BeforeDamage(dmginfo, hitgroup)
-	if hitgroup == 11 then dmginfo:SetDamage(0) end
+function ENT:OnDamaged(dmginfo, hitgroup, status)
+	if status == "PreDamage" && hitgroup == 11 then
+		dmginfo:SetDamage(0)
+	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnKilled(dmginfo, hitgroup)
-	self:SetBodygroup(0, 1)
+function ENT:OnDeath(dmginfo, hitgroup, status)
+	if status == "Finish" then
+		self:SetBodygroup(0, 1)
+	end
 end

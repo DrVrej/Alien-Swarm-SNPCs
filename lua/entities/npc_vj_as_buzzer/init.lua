@@ -23,7 +23,7 @@ ENT.TimeUntilMeleeAttackDamage = 0.3 -- This counted in seconds | This calculate
 ENT.NextAnyAttackTime_Melee = 0.6 -- How much time until it can use any attack again? | Counted in Seconds
 ENT.MeleeAttackDamage = 15
 
-ENT.HasDeathRagdoll = false -- Should the NPC spawn a corpse when it dies?
+ENT.HasDeathCorpse = false -- Should a corpse spawn when it's killed?
 	-- ====== Sound Paths ====== --
 ENT.SoundTbl_Breath = {"vj_alienswarm/buzzer/idle01.wav","vj_alienswarm/buzzer/idle02.wav"}
 ENT.SoundTbl_Alert = {"vj_alienswarm/buzzer/edited_onfire.wav"}
@@ -34,7 +34,7 @@ ENT.SoundTbl_Death = {"vj_alienswarm/buzzer/death01.wav","vj_alienswarm/buzzer/d
 ENT.GeneralSoundPitch1 = 100
 ENT.GeneralSoundPitch2 = 100
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnInitialize()
+function ENT:Init()
 	self:SetCollisionBounds(Vector(10, 10, 10), Vector(-10, -10, -10))
 	self:SetSurroundingBounds(Vector(40, 40, 40), Vector(-40, -40, -40))
 	
@@ -48,8 +48,10 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 local defAng = Angle(0, 0, 0)
 --
-function ENT:CustomOnKilled(dmginfo,hitgroup)
-	local myPos = self:GetPos()
-	ParticleEffect("antlion_spit", myPos, defAng)
-	ParticleEffect("antlion_gib_02_gas", myPos, defAng)
+function ENT:OnDeath(dmginfo, hitgroup, status)
+	if status == "Finish" then
+		local myPos = self:GetPos()
+		ParticleEffect("antlion_spit", myPos, defAng)
+		ParticleEffect("antlion_gib_02_gas", myPos, defAng)
+	end
 end
