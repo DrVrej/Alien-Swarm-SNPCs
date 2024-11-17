@@ -81,7 +81,7 @@ end
 function ENT:Controller_Initialize(ply, controlEnt)
 	ply:ChatPrint("JUMP: Toggle between running and galloping")
 	
-	function controlEnt:CustomOnKeyBindPressed(key)
+	function controlEnt:OnKeyBindPressed(key)
 		local npc = self.VJCE_NPC
 		-- Toggle between running and galloping
 		if key == IN_JUMP then

@@ -102,7 +102,7 @@ function ENT:Controller_Initialize(ply, controlEnt)
 		return self.BaseClass.TranslateActivity(self, act)
 	end
 	
-	function controlEnt:CustomOnKeyBindPressed(key)
+	function controlEnt:OnKeyBindPressed(key)
 		local npc = self.VJCE_NPC
 		-- Toggle defending mode
 		if key == IN_JUMP then
@@ -117,7 +117,7 @@ function ENT:Controller_Initialize(ply, controlEnt)
 	end
 	
 	-- Revert the NPC's "TranslateActivity" to the original function
-	function controlEnt:CustomOnStopControlling(keyPressed)
+	function controlEnt:OnStopControlling(keyPressed)
 		local npc = self.VJCE_NPC
 		if IsValid(npc) then
 			npc.TranslateActivity = self.OriginalShieldbugFunc
