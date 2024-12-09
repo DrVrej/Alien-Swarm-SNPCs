@@ -69,7 +69,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnAlert(ent)
 	if self.VJ_IsBeingControlled == true then return end
-	self:VJ_ACT_PLAYACTIVITY("high_scream", true, false, true)
+	self:PlayAnim("high_scream", true, false, true)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:MeleeAttackKnockbackVelocity(hitEnt)

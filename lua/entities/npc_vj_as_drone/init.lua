@@ -72,7 +72,7 @@ function ENT:Init()
 		self:SetState(VJ_STATE_FREEZE)
 		timer.Simple(0.05, function()
 			if IsValid(self) then
-				self:VJ_ACT_PLAYACTIVITY("burrow_out", true, false)
+				self:PlayAnim("burrow_out", true, false)
 				VJ.EmitSound(self, sdBurrow, 70, math.random(80, 100))
 				timer.Simple(0.12, function()
 					if IsValid(self) then

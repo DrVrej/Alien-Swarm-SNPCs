@@ -75,7 +75,7 @@ end
 function ENT:OnAlert(ent)
 	if self.VJ_IsBeingControlled == true then return end
 	if math.random(1, 2) == 1 then
-		self:VJ_ACT_PLAYACTIVITY(ACT_ARM, true, false, true)
+		self:PlayAnim(ACT_ARM, true, false, true)
 		self:PlaySoundSystem("Alert", "vj_alienswarm/shieldbug/roar.wav")
 	end
 end
