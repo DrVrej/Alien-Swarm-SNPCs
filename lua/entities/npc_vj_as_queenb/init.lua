@@ -68,7 +68,7 @@ function ENT:OnInput(key, activator, caller, data)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnAlert(ent)
-	if self.VJ_IsBeingControlled == true then return end
+	if self.VJ_IsBeingControlled then return end
 	self:PlayAnim("high_scream", true, false, true)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
