@@ -5,7 +5,7 @@ include("shared.lua")
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = "models/VJ_AS/queen.mdl" -- Model(s) to spawn with | Picks a random one if it's a table
+ENT.Model = "models/vj_alienswarm/queen.mdl" -- Model(s) to spawn with | Picks a random one if it's a table
 ENT.StartHealth = 8000
 ENT.HullType = HULL_MEDIUM_TALL
 ENT.VJTag_ID_Boss = true
@@ -51,10 +51,6 @@ ENT.DeathSoundLevel = 100
 function ENT:Init()
 	self:SetCollisionBounds(Vector(100, 100, 250), Vector(-100, -100, 5))
 	self:SetStepHeight(78)
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:GetSightDirection()
-	return self:GetAttachment(self:LookupAttachment("SpitSource")).Ang:Forward()
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnInput(key, activator, caller, data)
