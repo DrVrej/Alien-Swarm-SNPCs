@@ -20,7 +20,7 @@ ENT.MeleeAttackDamageDistance = 120 -- How far does the damage go | false = Let 
 ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calculates the time until it hits something
 
 ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time system for the footstep sound code, allowing you to use other ways like model events
-ENT.GibOnDeathDamagesTable = {"All"} -- Damages that it gibs from | "UseDefault" = Uses default damage types | "All" = Gib from any damage
+ENT.GibOnDeathFilter = false
 ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
 	-- ====== Sound Paths ====== --
 ENT.SoundTbl_FootStep = {"vj_alienswarm/boomer/footstep01.wav","vj_alienswarm/boomer/footstep02.wav","vj_alienswarm/boomer/footstep03.wav","vj_alienswarm/boomer/footstep04.wav"}
@@ -106,7 +106,7 @@ end
 local colorYellow = VJ.Color2Byte(Color(255, 221, 35))
 local defAng = Angle(0, 0, 0)
 --
-function ENT:SetUpGibesOnDeath(dmginfo, hitgroup)
+function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 	local myPos = self:GetPos() + self:OBBCenter()
 	util.BlastDamage(self, self, myPos, 300, 60)
 	util.ScreenShake(myPos, 100, 200, 1, 2500)

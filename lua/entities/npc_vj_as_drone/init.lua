@@ -126,7 +126,7 @@ function ENT:OnDeath(dmginfo, hitgroup, status)
 		end
 		
 		-- Certain damage types cause it to use gibbed bodygroup AND not play death animation
-		if self:GetBodygroup(0) != 1 && self:IsDefaultGibDamageType(dmginfo:GetDamageType()) then
+		if self:GetBodygroup(0) != 1 && self:IsGibDamage(dmginfo:GetDamageType()) then
 			self:SetBodygroup(0, 2)
 			self.HasDeathAnimation = false
 		end
