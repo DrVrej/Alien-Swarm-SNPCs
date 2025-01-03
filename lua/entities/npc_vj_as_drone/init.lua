@@ -99,8 +99,8 @@ function ENT:OnCallForHelp(ally, isFirst)
 	if !isFirst then return end
 	timer.Simple(1, function()
 		if IsValid(self) then
-			ParticleEffectAttach("antlion_gib_02_gas", PATTACH_POINT_FOLLOW, self, 6)
-			ParticleEffectAttach("antlion_gib_02_floaters", PATTACH_POINT_FOLLOW, self, 6)
+			ParticleEffectAttach("vj_acid_impact3_gas", PATTACH_POINT_FOLLOW, self, 6)
+			ParticleEffectAttach("vj_acid_impact3_floaters", PATTACH_POINT_FOLLOW, self, 6)
 		end
 	end)
 end

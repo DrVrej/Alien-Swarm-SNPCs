@@ -120,7 +120,7 @@ function ENT:HandleGibOnDeath(dmginfo, hitgroup)
 		effectData:SetScale(1.5)
 		util.Effect("StriderBlood", effectData)
 		util.Effect("StriderBlood", effectData)
-		ParticleEffect("antlion_gib_02", myPos, defAng)
+		ParticleEffect("vj_acid_impact3", myPos, defAng)
 	end
 	
 	self:CreateGibEntity("prop_ragdoll", "models/aliens/boomer/boomerlega.mdl", {Pos=self:GetPos() + self:GetUp()*95, Ang=self:GetAngles() + Angle(0, 200, 0), Vel=self:GetForward()*-math.Rand(450, 550)}) -- Back Leg

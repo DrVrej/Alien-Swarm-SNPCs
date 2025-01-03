@@ -51,7 +51,7 @@ local defAng = Angle(0, 0, 0)
 function ENT:OnDeath(dmginfo, hitgroup, status)
 	if status == "Finish" then
 		local myPos = self:GetPos()
-		ParticleEffect("antlion_spit", myPos, defAng)
-		ParticleEffect("antlion_gib_02_gas", myPos, defAng)
+		ParticleEffect("vj_acid_impact1", myPos, defAng)
+		ParticleEffect("vj_acid_impact3_gas", myPos, defAng)
 	end
 end

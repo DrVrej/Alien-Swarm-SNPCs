@@ -74,9 +74,9 @@ function ENT:OnInput(key, activator, caller, data)
 			effectData:SetScale(1)
 			util.Effect("StriderBlood", effectData)
 			util.Effect("StriderBlood", effectData)
-			ParticleEffect("antlion_spit", expPos, defAng)
-			ParticleEffect("antlion_gib_02", expPos, defAng)
-			ParticleEffect("antlion_gib_02_gas", expPos, defAng)
+			ParticleEffect("vj_acid_impact1", expPos, defAng)
+			ParticleEffect("vj_acid_impact3", expPos, defAng)
+			ParticleEffect("vj_acid_impact3_gas", expPos, defAng)
 		end
 	end
 end
