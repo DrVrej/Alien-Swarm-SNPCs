@@ -107,25 +107,27 @@ local colorYellow = VJ.Color2Byte(Color(255, 221, 35))
 local defAng = Angle(0, 0, 0)
 --
 function ENT:HandleGibOnDeath(dmginfo, hitgroup)
-	local myPos = self:GetPos() + self:OBBCenter()
-	util.BlastDamage(self, self, myPos, 300, 60)
+	local myPos = self:GetPos()
+	local myPosCenter = myPos + self:OBBCenter()
+	util.BlastDamage(self, self, myPosCenter, 300, 60)
 	util.ScreenShake(myPos, 100, 200, 1, 2500)
 	
-	if self.HasGibOnDeathEffects == true then
+	if self.HasGibOnDeathEffects then
 		local effectData = EffectData()
-		effectData:SetOrigin(myPos)
+		effectData:SetOrigin(myPosCenter)
 		effectData:SetColor(colorYellow)
 		effectData:SetScale(150)
 		util.Effect("VJ_Blood1", effectData)
 		effectData:SetScale(1.5)
 		util.Effect("StriderBlood", effectData)
 		util.Effect("StriderBlood", effectData)
-		ParticleEffect("vj_acid_impact3", myPos, defAng)
+		ParticleEffect("vj_acid_impact3", myPosCenter, defAng)
 	end
 	
-	self:CreateGibEntity("prop_ragdoll", "models/aliens/boomer/boomerlega.mdl", {Pos=self:GetPos() + self:GetUp()*95, Ang=self:GetAngles() + Angle(0, 200, 0), Vel=self:GetForward()*-math.Rand(450, 550)}) -- Back Leg
-	self:CreateGibEntity("prop_ragdoll", "models/aliens/boomer/boomerlegb.mdl", {Pos=self:GetPos() + self:GetUp()*95 + self:GetRight()*-10, Ang=self:GetAngles() + Angle(0, 30, 0), Vel=self:GetRight()*-math.Rand(450, 550)}) -- Right Leg
-	self:CreateGibEntity("prop_ragdoll", "models/aliens/boomer/boomerlegc.mdl", {Pos=self:GetPos() + self:GetUp()*95 + self:GetRight()*15, Ang=self:GetAngles() + Angle(0, -30, 0), Vel=self:GetRight()*math.Rand(450, 550)}) -- Left Leg
+	local myPosLegs = myPos + self:GetUp() * 95
+	self:CreateGibEntity("prop_ragdoll", "models/aliens/boomer/boomerlega.mdl", {Pos=myPosLegs, Ang=self:GetAngles() + Angle(0, 200, 0), Vel=self:GetForward()*-math.Rand(450, 550)}) -- Back Leg
+	self:CreateGibEntity("prop_ragdoll", "models/aliens/boomer/boomerlegb.mdl", {Pos=myPosLegs + self:GetRight()*-10, Ang=self:GetAngles() + Angle(0, 30, 0), Vel=self:GetRight()*-math.Rand(450, 550)}) -- Right Leg
+	self:CreateGibEntity("prop_ragdoll", "models/aliens/boomer/boomerlegc.mdl", {Pos=myPosLegs + self:GetRight()*15, Ang=self:GetAngles() + Angle(0, -30, 0), Vel=self:GetRight()*math.Rand(450, 550)}) -- Left Leg
 	self:CreateGibEntity("obj_vj_gib", "UseAlien_Small")
 	self:CreateGibEntity("obj_vj_gib", "UseAlien_Small")
 	self:CreateGibEntity("obj_vj_gib", "UseAlien_Small")
