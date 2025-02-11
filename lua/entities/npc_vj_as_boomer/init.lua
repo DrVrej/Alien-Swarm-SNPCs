@@ -9,7 +9,7 @@ ENT.Model = "models/vj_alienswarm/boomer.mdl" -- Model(s) to spawn with | Picks 
 ENT.StartHealth = 350
 ENT.HullType = HULL_MEDIUM_TALL
 ---------------------------------------------------------------------------------------------------------------------------------------------
-ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"} -- NPCs with the same class with be allied to each other
+ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"}
 ENT.BloodColor = VJ.BLOOD_COLOR_YELLOW
 
 ENT.HasMeleeAttack = true -- Can this NPC melee attack?
@@ -19,7 +19,7 @@ ENT.MeleeAttackDistance = 100 -- How close an enemy has to be to trigger a melee
 ENT.MeleeAttackDamageDistance = 120 -- How far does the damage go | false = Let the base auto calculate on initialize based on the NPC's collision bounds
 ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calculates the time until it hits something
 
-ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time system for the footstep sound code, allowing you to use other ways like model events
+ENT.DisableFootStepSoundTimer = true
 ENT.GibOnDeathFilter = false
 ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
 	-- ====== Sound Paths ====== --
@@ -57,7 +57,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnInput(key, activator, caller, data)
 	if key == "ASW_Boomer.FootstepWalk" or key == "ASW_Boomer.FootstepRun" then
-		self:FootStepSoundCode()
+		self:PlayFootstepSound()
 	elseif key == "ASW_Boomer.MeleeWhoosh" then
 		VJ.EmitSound(self, sdWhoosh, 70)
 	elseif key == "ASW_Boomer.Hit" then

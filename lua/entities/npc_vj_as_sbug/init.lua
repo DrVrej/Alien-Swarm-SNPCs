@@ -9,7 +9,7 @@ ENT.Model = "models/vj_alienswarm/shieldbug.mdl" -- Model(s) to spawn with | Pic
 ENT.StartHealth = 800
 ENT.HullType = HULL_LARGE
 ---------------------------------------------------------------------------------------------------------------------------------------------
-ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"} -- NPCs with the same class with be allied to each other
+ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"}
 ENT.BloodColor = VJ.BLOOD_COLOR_YELLOW
 
 ENT.HasMeleeAttack = true -- Can this NPC melee attack?
@@ -22,7 +22,7 @@ ENT.HasMeleeAttackKnockBack = true -- If true, it will cause a knockback to its 
 ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
 ENT.AnimTbl_Death = "vjseq_death_02"
 ENT.DeathAnimationDecreaseLengthAmount = 0.4 -- This will decrease the time until it turns into a corpse
-ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time system for the footstep sound code, allowing you to use other ways like model events
+ENT.DisableFootStepSoundTimer = true
 ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
 	-- ====== Sound Paths ====== --
 ENT.SoundTbl_FootStep = {"vj_alienswarm/shieldbug/default01.wav","vj_alienswarm/shieldbug/default02.wav"}
@@ -55,7 +55,7 @@ local defAng = Angle(0, 0, 0)
 --
 function ENT:OnInput(key, activator, caller, data)
 	if key == "ASW_ShieldBug.Movement" or key == "ASW_ShieldBug.MoveDefend" then
-		self:FootStepSoundCode()
+		self:PlayFootstepSound()
 	elseif key == "ASW_ShieldBug.Hit" then
 		self:MeleeAttackCode()
 	elseif key == "ASW_ShieldBug.Stomp" && self:GetActivity() == ACT_ARM then

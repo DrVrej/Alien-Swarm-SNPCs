@@ -9,7 +9,7 @@ ENT.Model = "models/vj_alienswarm/betashieldbug.mdl" -- Model(s) to spawn with |
 ENT.StartHealth = 800
 ENT.HullType = HULL_LARGE
 ---------------------------------------------------------------------------------------------------------------------------------------------
-ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"} -- NPCs with the same class with be allied to each other
+ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"}
 ENT.BloodColor = VJ.BLOOD_COLOR_YELLOW
 
 ENT.HasMeleeAttack = true -- Can this NPC melee attack?
@@ -21,7 +21,7 @@ ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calcula
 
 ENT.HasMeleeAttackKnockBack = true -- If true, it will cause a knockback to its enemy
 ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
-ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time system for the footstep sound code, allowing you to use other ways like model events
+ENT.DisableFootStepSoundTimer = true
 	-- ====== Sound Paths ====== --
 ENT.SoundTbl_FootStep = {"vj_alienswarm/shieldbug/default01.wav","vj_alienswarm/shieldbug/default02.wav"}
 ENT.SoundTbl_Idle = {"vj_alienswarm/shieldbug/idle01.wav","vj_alienswarm/shieldbug/idle02.wav"}
@@ -47,7 +47,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnInput(key, activator, caller, data)
 	if key == "move" then
-		self:FootStepSoundCode()
+		self:PlayFootstepSound()
 	elseif key == "melee_hit" then
 		local curSeq = self:GetSequenceName(self:GetSequence())
 		if curSeq == "attack_backhand" or curSeq == "attack_swipe" then -- Swipe

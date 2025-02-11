@@ -9,7 +9,7 @@ ENT.Model = "models/vj_alienswarm/drone.mdl" -- Model(s) to spawn with | Picks a
 ENT.StartHealth = 80
 ENT.HullType = HULL_MEDIUM
 ---------------------------------------------------------------------------------------------------------------------------------------------
-ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"} -- NPCs with the same class with be allied to each other
+ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"}
 ENT.BloodColor = VJ.BLOOD_COLOR_YELLOW
 
 ENT.HasMeleeAttack = true -- Can this NPC melee attack?
@@ -25,7 +25,7 @@ ENT.MeleeAttackBleedEnemyTime = 1 -- How much time until the next rep?
 ENT.MeleeAttackBleedEnemyReps = 4 -- How many reps?
 
 ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
-ENT.DisableFootStepSoundTimer = true -- If set to true, it will disable the time system for the footstep sound code, allowing you to use other ways like model events
+ENT.DisableFootStepSoundTimer = true
 ENT.AnimTbl_CallForHelp = ACT_ARM
 ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
 ENT.AnimTbl_Death = {"vjseq_death01","vjseq_death_fire_02","vjseq_death_fire_04","vjseq_death_fire_05","vjseq_death_fire_07","vjseq_death_fire_08"}
@@ -87,7 +87,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnInput(key, activator, caller, data)
 	if key == "ASW_Drone.Footstep" then
-		self:FootStepSoundCode()
+		self:PlayFootstepSound()
 	elseif key == "ASW_Drone.Hit" then
 		self:MeleeAttackCode()
 	//elseif key == "ASW_Drone.Burrow" then -- Plays at the initial frame, so it's useless
