@@ -5,43 +5,43 @@ include("shared.lua")
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = "models/vj_alienswarm/drone.mdl" -- Model(s) to spawn with | Picks a random one if it's a table
+ENT.Model = "models/vj_alienswarm/drone.mdl"
 ENT.StartHealth = 80
 ENT.HullType = HULL_MEDIUM
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"}
 ENT.BloodColor = VJ.BLOOD_COLOR_YELLOW
 
-ENT.HasMeleeAttack = true -- Can this NPC melee attack?
+ENT.HasMeleeAttack = true
 ENT.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK1, ACT_MELEE_ATTACK2, "lunge_attack03"}
-ENT.MeleeAttackDistance = 70 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-ENT.MeleeAttackDamageDistance = 80 -- How far does the damage go | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calculates the time until it hits something
+ENT.MeleeAttackDistance = 70
+ENT.MeleeAttackDamageDistance = 80
+ENT.TimeUntilMeleeAttackDamage = false
 ENT.MeleeAttackDamage = 15
-ENT.MeleeAttackBleedEnemy = true -- Should the player bleed when attacked by melee
-ENT.MeleeAttackBleedEnemyChance = 3 -- How chance there is that the play will bleed? | 1 = always
-ENT.MeleeAttackBleedEnemyDamage = 1 -- How much damage will the enemy get on every rep?
-ENT.MeleeAttackBleedEnemyTime = 1 -- How much time until the next rep?
-ENT.MeleeAttackBleedEnemyReps = 4 -- How many reps?
+ENT.MeleeAttackBleedEnemy = true
+ENT.MeleeAttackBleedEnemyChance = 3
+ENT.MeleeAttackBleedEnemyDamage = 1
+ENT.MeleeAttackBleedEnemyTime = 1
+ENT.MeleeAttackBleedEnemyReps = 4
 
-ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
+ENT.HasExtraMeleeAttackSounds = true
 ENT.DisableFootStepSoundTimer = true
 ENT.AnimTbl_CallForHelp = ACT_ARM
-ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
-ENT.AnimTbl_Death = {"vjseq_death01","vjseq_death_fire_02","vjseq_death_fire_04","vjseq_death_fire_05","vjseq_death_fire_07","vjseq_death_fire_08"}
-ENT.DeathAnimationChance = 2 -- Put 1 if you want it to play the animation all the time
-	-- ====== Flinching Variables ====== --
-ENT.CanFlinch = 1 -- 0 = Don't flinch | 1 = Flinch at any damage | 2 = Flinch only from certain damages
-ENT.AnimTbl_Flinch = "flinch_small" -- The regular flinch animations to play
-	-- ====== Sound Paths ====== --
-ENT.SoundTbl_FootStep = {"vj_alienswarm/drone/footstep1a.wav","vj_alienswarm/drone/footstep1b.wav"}
-ENT.SoundTbl_Idle = {"vj_alienswarm/drone/glide01.wav","vj_alienswarm/drone/glide02.wav","vj_alienswarm/drone/glide03.wav","vj_alienswarm/drone/roar01.wav","vj_alienswarm/drone/roar02.wav"}
-ENT.SoundTbl_Alert = {"vj_alienswarm/drone/alert01.wav","vj_alienswarm/drone/alert02.wav","vj_alienswarm/drone/alert03.wav"}
-ENT.SoundTbl_BeforeMeleeAttack = {"vj_alienswarm/drone/attack01.wav","vj_alienswarm/drone/attack02.wav","vj_alienswarm/drone/attack03.wav","vj_alienswarm/drone/attack04.wav"}
-ENT.SoundTbl_MeleeAttackMiss = {"vj_alienswarm/drone/swipe01.wav","vj_alienswarm/drone/swipe02.wav","vj_alienswarm/drone/swipe03.wav"}
-ENT.SoundTbl_Pain = {"vj_alienswarm/drone/pain01.wav","vj_alienswarm/drone/pain02.wav","vj_alienswarm/drone/pain03.wav","vj_alienswarm/drone/pain04.wav","vj_alienswarm/drone/pain05.wav","vj_alienswarm/drone/pain06.wav","vj_alienswarm/drone/pain07.wav"}
-ENT.SoundTbl_Death = {"vj_alienswarm/drone/deathfire01.wav","vj_alienswarm/drone/deathfire02.wav","vj_alienswarm/drone/deathfire03.wav","vj_alienswarm/drone/deathfire04.wav","vj_alienswarm/drone/death01.wav"}
-local sdBurrow = {"vj_alienswarm/drone/burrow01.wav","vj_alienswarm/drone/burrow02.wav","vj_alienswarm/drone/burrow03.wav","vj_alienswarm/drone/burrow04.wav"}
+ENT.HasDeathAnimation = true
+ENT.AnimTbl_Death = {"vjseq_death01", "vjseq_death_fire_02", "vjseq_death_fire_04", "vjseq_death_fire_05", "vjseq_death_fire_07", "vjseq_death_fire_08"}
+ENT.DeathAnimationChance = 2
+
+ENT.CanFlinch = 1
+ENT.AnimTbl_Flinch = "flinch_small"
+
+ENT.SoundTbl_FootStep = {"vj_alienswarm/drone/footstep1a.wav", "vj_alienswarm/drone/footstep1b.wav"}
+ENT.SoundTbl_Idle = {"vj_alienswarm/drone/glide01.wav", "vj_alienswarm/drone/glide02.wav", "vj_alienswarm/drone/glide03.wav", "vj_alienswarm/drone/roar01.wav", "vj_alienswarm/drone/roar02.wav"}
+ENT.SoundTbl_Alert = {"vj_alienswarm/drone/alert01.wav", "vj_alienswarm/drone/alert02.wav", "vj_alienswarm/drone/alert03.wav"}
+ENT.SoundTbl_BeforeMeleeAttack = {"vj_alienswarm/drone/attack01.wav", "vj_alienswarm/drone/attack02.wav", "vj_alienswarm/drone/attack03.wav", "vj_alienswarm/drone/attack04.wav"}
+ENT.SoundTbl_MeleeAttackMiss = {"vj_alienswarm/drone/swipe01.wav", "vj_alienswarm/drone/swipe02.wav", "vj_alienswarm/drone/swipe03.wav"}
+ENT.SoundTbl_Pain = {"vj_alienswarm/drone/pain01.wav", "vj_alienswarm/drone/pain02.wav", "vj_alienswarm/drone/pain03.wav", "vj_alienswarm/drone/pain04.wav", "vj_alienswarm/drone/pain05.wav", "vj_alienswarm/drone/pain06.wav", "vj_alienswarm/drone/pain07.wav"}
+ENT.SoundTbl_Death = {"vj_alienswarm/drone/deathfire01.wav", "vj_alienswarm/drone/deathfire02.wav", "vj_alienswarm/drone/deathfire03.wav", "vj_alienswarm/drone/deathfire04.wav", "vj_alienswarm/drone/death01.wav"}
+local sdBurrow = {"vj_alienswarm/drone/burrow01.wav", "vj_alienswarm/drone/burrow02.wav", "vj_alienswarm/drone/burrow03.wav", "vj_alienswarm/drone/burrow04.wav"}
 
 ENT.FootStepSoundLevel = 55
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -89,7 +89,7 @@ function ENT:OnInput(key, activator, caller, data)
 	if key == "ASW_Drone.Footstep" then
 		self:PlayFootstepSound()
 	elseif key == "ASW_Drone.Hit" then
-		self:MeleeAttackCode()
+		self:ExecuteMeleeAttack()
 	//elseif key == "ASW_Drone.Burrow" then -- Plays at the initial frame, so it's useless
 		//self:SetNoDraw(false)
 	end

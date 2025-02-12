@@ -5,35 +5,35 @@ include("shared.lua")
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = "models/vj_alienswarm/shieldbug.mdl" -- Model(s) to spawn with | Picks a random one if it's a table
+ENT.Model = "models/vj_alienswarm/shieldbug.mdl"
 ENT.StartHealth = 800
 ENT.HullType = HULL_LARGE
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"}
 ENT.BloodColor = VJ.BLOOD_COLOR_YELLOW
 
-ENT.HasMeleeAttack = true -- Can this NPC melee attack?
+ENT.HasMeleeAttack = true
 ENT.MeleeAttackDamage = 50
-ENT.MeleeAttackDistance = 140 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-ENT.MeleeAttackDamageDistance = 175 -- How does the damage go?
-ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calculates the time until it hits something
-ENT.HasMeleeAttackKnockBack = true -- If true, it will cause a knockback to its enemy
+ENT.MeleeAttackDistance = 140
+ENT.MeleeAttackDamageDistance = 175
+ENT.TimeUntilMeleeAttackDamage = false
+ENT.HasMeleeAttackKnockBack = true
 
-ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
+ENT.HasDeathAnimation = true
 ENT.AnimTbl_Death = "vjseq_death_02"
-ENT.DeathAnimationDecreaseLengthAmount = 0.4 -- This will decrease the time until it turns into a corpse
+ENT.DeathAnimationDecreaseLengthAmount = 0.4
 ENT.DisableFootStepSoundTimer = true
-ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
-	-- ====== Sound Paths ====== --
-ENT.SoundTbl_FootStep = {"vj_alienswarm/shieldbug/default01.wav","vj_alienswarm/shieldbug/default02.wav"}
-ENT.SoundTbl_Idle = {"vj_alienswarm/shieldbug/idle01.wav","vj_alienswarm/shieldbug/idle02.wav"}
-ENT.SoundTbl_Alert = {"vj_alienswarm/shieldbug/alert.wav","vj_alienswarm/shieldbug/move_voc01.wav","vj_alienswarm/shieldbug/move_voc02.wav"}
-ENT.SoundTbl_MeleeAttack = {"vj_alienswarm/shieldbug/attack01.wav","vj_alienswarm/shieldbug/attack02.wav","vj_alienswarm/shieldbug/attack03.wav"}
-ENT.SoundTbl_MeleeAttackMiss = {"vj_alienswarm/shieldbug/stomp01.wav","vj_alienswarm/shieldbug/stomp02.wav"}
-ENT.SoundTbl_Pain = {"vj_alienswarm/shieldbug/pain01.wav","vj_alienswarm/shieldbug/pain02.wav","vj_alienswarm/shieldbug/move_voc03.wav"}
-ENT.SoundTbl_Death = {"vj_alienswarm/shieldbug/pain01.wav","vj_alienswarm/shieldbug/pain02.wav"}
+ENT.HasExtraMeleeAttackSounds = true
 
-local sdGib = {"vj_alienswarm/shieldbug/shieldbugdeath.wav","vj_alienswarm/shieldbug/shieldbuggibsplat.wav"}
+ENT.SoundTbl_FootStep = {"vj_alienswarm/shieldbug/default01.wav", "vj_alienswarm/shieldbug/default02.wav"}
+ENT.SoundTbl_Idle = {"vj_alienswarm/shieldbug/idle01.wav", "vj_alienswarm/shieldbug/idle02.wav"}
+ENT.SoundTbl_Alert = {"vj_alienswarm/shieldbug/alert.wav", "vj_alienswarm/shieldbug/move_voc01.wav", "vj_alienswarm/shieldbug/move_voc02.wav"}
+ENT.SoundTbl_MeleeAttack = {"vj_alienswarm/shieldbug/attack01.wav", "vj_alienswarm/shieldbug/attack02.wav", "vj_alienswarm/shieldbug/attack03.wav"}
+ENT.SoundTbl_MeleeAttackMiss = {"vj_alienswarm/shieldbug/stomp01.wav", "vj_alienswarm/shieldbug/stomp02.wav"}
+ENT.SoundTbl_Pain = {"vj_alienswarm/shieldbug/pain01.wav", "vj_alienswarm/shieldbug/pain02.wav", "vj_alienswarm/shieldbug/move_voc03.wav"}
+ENT.SoundTbl_Death = {"vj_alienswarm/shieldbug/pain01.wav", "vj_alienswarm/shieldbug/pain02.wav"}
+
+local sdGib = {"vj_alienswarm/shieldbug/shieldbugdeath.wav", "vj_alienswarm/shieldbug/shieldbuggibsplat.wav"}
 
 local animAttackReg = {ACT_MELEE_ATTACK1, ACT_MELEE_ATTACK2}
 
@@ -57,7 +57,7 @@ function ENT:OnInput(key, activator, caller, data)
 	if key == "ASW_ShieldBug.Movement" or key == "ASW_ShieldBug.MoveDefend" then
 		self:PlayFootstepSound()
 	elseif key == "ASW_ShieldBug.Hit" then
-		self:MeleeAttackCode()
+		self:ExecuteMeleeAttack()
 	elseif key == "ASW_ShieldBug.Stomp" && self:GetActivity() == ACT_ARM then
 		util.ScreenShake(self:GetPos(), 16, 200, 0.5, 1500)
 		if self.HasSounds == true && self.HasAlertSounds == true then

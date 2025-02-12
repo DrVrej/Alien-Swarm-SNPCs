@@ -6,12 +6,12 @@ include("shared.lua")
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = "models/vj_alienswarm/betadrone_big.mdl" -- Model(s) to spawn with | Picks a random one if it's a table
+ENT.Model = "models/vj_alienswarm/betadrone_big.mdl"
 ENT.StartHealth = 220
 ENT.HullType = HULL_LARGE
 
-ENT.MeleeAttackDistance = 90 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-ENT.MeleeAttackDamageDistance = 100 -- How far does the damage go | false = Let the base auto calculate on initialize based on the NPC's collision bounds
+ENT.MeleeAttackDistance = 90
+ENT.MeleeAttackDamageDistance = 100
 ENT.MeleeAttackDamage = 25
 
 ENT.GeneralSoundPitch1 = 60

@@ -5,7 +5,7 @@ include("shared.lua")
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = "models/vj_alienswarm/queen.mdl" -- Model(s) to spawn with | Picks a random one if it's a table
+ENT.Model = "models/vj_alienswarm/queen.mdl"
 ENT.StartHealth = 8000
 ENT.HullType = HULL_MEDIUM_TALL
 ENT.VJ_ID_Boss = true
@@ -13,27 +13,27 @@ ENT.VJ_ID_Boss = true
 ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"}
 ENT.BloodColor = VJ.BLOOD_COLOR_YELLOW
 
-ENT.HasMeleeAttack = true -- Can this NPC melee attack?
+ENT.HasMeleeAttack = true
 ENT.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK1, ACT_MELEE_ATTACK2}
 ENT.MeleeAttackDamage = 90
-ENT.MeleeAttackDistance = 260 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-ENT.MeleeAttackDamageDistance = 280 -- How far does the damage go | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calculates the time until it hits something
-ENT.HasMeleeAttackKnockBack = true -- If true, it will cause a knockback to its enemy
+ENT.MeleeAttackDistance = 260
+ENT.MeleeAttackDamageDistance = 280
+ENT.TimeUntilMeleeAttackDamage = false
+ENT.HasMeleeAttackKnockBack = true
 
-ENT.HasDeathCorpse = false -- Should a corpse spawn when it's killed?
-ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
+ENT.HasDeathCorpse = false
+ENT.HasDeathAnimation = true
 ENT.AnimTbl_Death = ACT_DIESIMPLE
-ENT.DeathAnimationTime = 8 -- How long should the death animation play?
-ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
+ENT.DeathAnimationTime = 8
+ENT.HasExtraMeleeAttackSounds = true
 ENT.DisableFootStepSoundTimer = true
-	-- ====== Sound Paths ====== --
-ENT.SoundTbl_FootStep = {"vj_alienswarm/boomer/footstep01.wav","vj_alienswarm/boomer/footstep02.wav","vj_alienswarm/boomer/footstep03.wav","vj_alienswarm/boomer/footstep04.wav"}
-ENT.SoundTbl_Idle = {"vj_alienswarm/shieldbug/idle01.wav","vj_alienswarm/shieldbug/idle02.wav"}
-ENT.SoundTbl_MeleeAttack = {"vj_alienswarm/drone/jump.wav"}
-ENT.SoundTbl_MeleeAttackMiss = {"vj_alienswarm/boomer/attack01.wav","vj_alienswarm/boomer/attack02.wav"}
-ENT.SoundTbl_Pain = {"vj_alienswarm/shieldbug/pain01.wav","vj_alienswarm/shieldbug/pain02.wav","vj_alienswarm/shieldbug/move_voc03.wav"}
-ENT.SoundTbl_Death = {"vj_alienswarm/drone/die_fancy.wav"}
+
+ENT.SoundTbl_FootStep = {"vj_alienswarm/boomer/footstep01.wav", "vj_alienswarm/boomer/footstep02.wav", "vj_alienswarm/boomer/footstep03.wav", "vj_alienswarm/boomer/footstep04.wav"}
+ENT.SoundTbl_Idle = {"vj_alienswarm/shieldbug/idle01.wav", "vj_alienswarm/shieldbug/idle02.wav"}
+ENT.SoundTbl_MeleeAttack = "vj_alienswarm/drone/jump.wav"
+ENT.SoundTbl_MeleeAttackMiss = {"vj_alienswarm/boomer/attack01.wav", "vj_alienswarm/boomer/attack02.wav"}
+ENT.SoundTbl_Pain = {"vj_alienswarm/shieldbug/pain01.wav", "vj_alienswarm/shieldbug/pain02.wav", "vj_alienswarm/shieldbug/move_voc03.wav"}
+ENT.SoundTbl_Death = "vj_alienswarm/drone/die_fancy.wav"
 
 ENT.GeneralSoundPitch1 = 50
 ENT.GeneralSoundPitch2 = 50
@@ -57,7 +57,7 @@ function ENT:OnInput(key, activator, caller, data)
 	if key == "move" then
 		self:PlayFootstepSound()
 	elseif key == "attack_melee" then
-		self:MeleeAttackCode()
+		self:ExecuteMeleeAttack()
 	elseif key == "alert_scream" then
 		self:PlaySoundSystem("Alert", "vj_alienswarm/shieldbug/roar.wav")
 	end

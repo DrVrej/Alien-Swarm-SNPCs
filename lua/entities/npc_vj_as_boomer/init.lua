@@ -5,29 +5,29 @@ include("shared.lua")
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = "models/vj_alienswarm/boomer.mdl" -- Model(s) to spawn with | Picks a random one if it's a table
+ENT.Model = "models/vj_alienswarm/boomer.mdl"
 ENT.StartHealth = 350
 ENT.HullType = HULL_MEDIUM_TALL
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"}
 ENT.BloodColor = VJ.BLOOD_COLOR_YELLOW
 
-ENT.HasMeleeAttack = true -- Can this NPC melee attack?
+ENT.HasMeleeAttack = true
 ENT.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK1, ACT_MELEE_ATTACK2}
-ENT.MeleeAttackAnimationDecreaseLengthAmount = 0.2 -- This will decrease the time until starts chasing again. Use it to fix animation pauses until it chases the enemy.
-ENT.MeleeAttackDistance = 100 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-ENT.MeleeAttackDamageDistance = 120 -- How far does the damage go | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calculates the time until it hits something
+ENT.MeleeAttackAnimationDecreaseLengthAmount = 0.2
+ENT.MeleeAttackDistance = 100
+ENT.MeleeAttackDamageDistance = 120
+ENT.TimeUntilMeleeAttackDamage = false
 
 ENT.DisableFootStepSoundTimer = true
 ENT.GibOnDeathFilter = false
-ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
-	-- ====== Sound Paths ====== --
-ENT.SoundTbl_FootStep = {"vj_alienswarm/boomer/footstep01.wav","vj_alienswarm/boomer/footstep02.wav","vj_alienswarm/boomer/footstep03.wav","vj_alienswarm/boomer/footstep04.wav"}
-ENT.SoundTbl_Idle = {"vj_alienswarm/boomer/inflate.wav","vj_alienswarm/boomer/roar02.wav"}
-ENT.SoundTbl_Alert = {"vj_alienswarm/boomer/roar01.wav","vj_alienswarm/boomer/alert01.wav"}
-ENT.SoundTbl_Pain = {"vj_alienswarm/boomer/land02.wav"}
-ENT.SoundTbl_Death = {"vj_alienswarm/boomer/boomer_bomb01.wav","vj_alienswarm/boomer/boomer_bomb02.wav","vj_alienswarm/boomer/boomer_bomb03.wav","vj_alienswarm/boomer/boomer_bomb04.wav"}
+ENT.HasExtraMeleeAttackSounds = true
+
+ENT.SoundTbl_FootStep = {"vj_alienswarm/boomer/footstep01.wav", "vj_alienswarm/boomer/footstep02.wav", "vj_alienswarm/boomer/footstep03.wav", "vj_alienswarm/boomer/footstep04.wav"}
+ENT.SoundTbl_Idle = {"vj_alienswarm/boomer/inflate.wav", "vj_alienswarm/boomer/roar02.wav"}
+ENT.SoundTbl_Alert = {"vj_alienswarm/boomer/roar01.wav", "vj_alienswarm/boomer/alert01.wav"}
+ENT.SoundTbl_Pain = "vj_alienswarm/boomer/land02.wav"
+ENT.SoundTbl_Death = {"vj_alienswarm/boomer/boomer_bomb01.wav", "vj_alienswarm/boomer/boomer_bomb02.wav", "vj_alienswarm/boomer/boomer_bomb03.wav", "vj_alienswarm/boomer/boomer_bomb04.wav"}
 
 local sdWhoosh = {"vj_alienswarm/boomer/attack01.wav", "vj_alienswarm/boomer/attack02.wav"}
 
@@ -70,7 +70,7 @@ function ENT:OnInput(key, activator, caller, data)
 			self.HasMeleeAttackKnockBack = true
 			self.SoundTbl_MeleeAttackMiss = false
 		end
-		self:MeleeAttackCode()
+		self:ExecuteMeleeAttack()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

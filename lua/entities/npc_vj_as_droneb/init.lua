@@ -5,42 +5,42 @@ include("shared.lua")
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = "models/vj_alienswarm/betadrone.mdl" -- Model(s) to spawn with | Picks a random one if it's a table
+ENT.Model = "models/vj_alienswarm/betadrone.mdl"
 ENT.StartHealth = 80
 ENT.HullType = HULL_MEDIUM
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"}
 ENT.BloodColor = VJ.BLOOD_COLOR_YELLOW
 
-ENT.HasMeleeAttack = true -- Can this NPC melee attack?
+ENT.HasMeleeAttack = true
 ENT.AnimTbl_MeleeAttack = ACT_MELEE_ATTACK1
-ENT.MeleeAttackDistance = 80 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-ENT.MeleeAttackDamageDistance = 100 -- How far does the damage go | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calculates the time until it hits something
+ENT.MeleeAttackDistance = 80
+ENT.MeleeAttackDamageDistance = 100
+ENT.TimeUntilMeleeAttackDamage = false
 ENT.MeleeAttackDamage = 15
-ENT.MeleeAttackBleedEnemy = true -- Should the player bleed when attacked by melee
-ENT.MeleeAttackBleedEnemyChance = 3 -- How chance there is that the play will bleed? | 1 = always
-ENT.MeleeAttackBleedEnemyDamage = 1 -- How much damage will the enemy get on every rep?
-ENT.MeleeAttackBleedEnemyTime = 1 -- How much time until the next rep?
-ENT.MeleeAttackBleedEnemyReps = 4 -- How many reps?
+ENT.MeleeAttackBleedEnemy = true
+ENT.MeleeAttackBleedEnemyChance = 3
+ENT.MeleeAttackBleedEnemyDamage = 1
+ENT.MeleeAttackBleedEnemyTime = 1
+ENT.MeleeAttackBleedEnemyReps = 4
 
-ENT.DeathCorpseSetBoneAngles = false -- This can be used to stop the corpse glitching or flying on death
-ENT.HasDeathAnimation = true -- Does it play an animation when it dies?
+ENT.DeathCorpseSetBoneAngles = false
+ENT.HasDeathAnimation = true
 ENT.AnimTbl_Death = ACT_DIESIMPLE
-ENT.DeathAnimationChance = 2 -- Put 1 if you want it to play the animation all the time
-ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
+ENT.DeathAnimationChance = 2
+ENT.HasExtraMeleeAttackSounds = true
 ENT.DisableFootStepSoundTimer = true
-	-- ====== Flinching Code ====== --
-ENT.CanFlinch = 1 -- 0 = Don't flinch | 1 = Flinch at any damage | 2 = Flinch only from certain damages
-ENT.AnimTbl_Flinch = ACT_SMALL_FLINCH -- The regular flinch animations to play
-	-- ====== Sound Paths ====== --
-ENT.SoundTbl_FootStep = {"vj_alienswarm/drone/footstep1a.wav","vj_alienswarm/drone/footstep1b.wav"}
-ENT.SoundTbl_Idle = {"vj_alienswarm/drone/glide01.wav","vj_alienswarm/drone/glide02.wav","vj_alienswarm/drone/glide03.wav","vj_alienswarm/drone/roar01.wav","vj_alienswarm/drone/roar02.wav"}
-ENT.SoundTbl_Alert = {"vj_alienswarm/drone/alert01.wav","vj_alienswarm/drone/alert02.wav","vj_alienswarm/drone/alert03.wav"}
-ENT.SoundTbl_MeleeAttack = {"vj_alienswarm/drone/attack01.wav","vj_alienswarm/drone/attack02.wav","vj_alienswarm/drone/attack03.wav","vj_alienswarm/drone/attack04.wav"}
-ENT.SoundTbl_MeleeAttackMiss = {"vj_alienswarm/drone/swipe01.wav","vj_alienswarm/drone/swipe02.wav","vj_alienswarm/drone/swipe03.wav"}
-ENT.SoundTbl_Pain = {"vj_alienswarm/drone/pain01.wav","vj_alienswarm/drone/pain02.wav","vj_alienswarm/drone/pain03.wav","vj_alienswarm/drone/pain04.wav","vj_alienswarm/drone/pain05.wav","vj_alienswarm/drone/pain06.wav"}
-ENT.SoundTbl_Death = {"vj_alienswarm/drone/deathfire01.wav","vj_alienswarm/drone/deathfire02.wav","vj_alienswarm/drone/deathfire03.wav","vj_alienswarm/drone/deathfire04.wav","vj_alienswarm/drone/death01.wav"}
+
+ENT.CanFlinch = 1
+ENT.AnimTbl_Flinch = ACT_SMALL_FLINCH
+
+ENT.SoundTbl_FootStep = {"vj_alienswarm/drone/footstep1a.wav", "vj_alienswarm/drone/footstep1b.wav"}
+ENT.SoundTbl_Idle = {"vj_alienswarm/drone/glide01.wav", "vj_alienswarm/drone/glide02.wav", "vj_alienswarm/drone/glide03.wav", "vj_alienswarm/drone/roar01.wav", "vj_alienswarm/drone/roar02.wav"}
+ENT.SoundTbl_Alert = {"vj_alienswarm/drone/alert01.wav", "vj_alienswarm/drone/alert02.wav", "vj_alienswarm/drone/alert03.wav"}
+ENT.SoundTbl_MeleeAttack = {"vj_alienswarm/drone/attack01.wav", "vj_alienswarm/drone/attack02.wav", "vj_alienswarm/drone/attack03.wav", "vj_alienswarm/drone/attack04.wav"}
+ENT.SoundTbl_MeleeAttackMiss = {"vj_alienswarm/drone/swipe01.wav", "vj_alienswarm/drone/swipe02.wav", "vj_alienswarm/drone/swipe03.wav"}
+ENT.SoundTbl_Pain = {"vj_alienswarm/drone/pain01.wav", "vj_alienswarm/drone/pain02.wav", "vj_alienswarm/drone/pain03.wav", "vj_alienswarm/drone/pain04.wav", "vj_alienswarm/drone/pain05.wav", "vj_alienswarm/drone/pain06.wav"}
+ENT.SoundTbl_Death = {"vj_alienswarm/drone/deathfire01.wav", "vj_alienswarm/drone/deathfire02.wav", "vj_alienswarm/drone/deathfire03.wav", "vj_alienswarm/drone/deathfire04.wav", "vj_alienswarm/drone/death01.wav"}
 
 ENT.FootStepSoundLevel = 55
 ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ function ENT:OnInput(key, activator, caller, data)
 	if key == "move" then
 		self:PlayFootstepSound()
 	elseif key == "melee_hit" then
-		self:MeleeAttackCode()
+		self:ExecuteMeleeAttack()
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------

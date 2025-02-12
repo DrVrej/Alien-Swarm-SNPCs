@@ -5,33 +5,33 @@ include("shared.lua")
 	No parts of this code or any of its contents may be reproduced, copied, modified or adapted,
 	without the prior written consent of the author, unless otherwise indicated for stand-alone materials.
 -----------------------------------------------*/
-ENT.Model = "models/vj_alienswarm/betashieldbug.mdl" -- Model(s) to spawn with | Picks a random one if it's a table
+ENT.Model = "models/vj_alienswarm/betashieldbug.mdl"
 ENT.StartHealth = 800
 ENT.HullType = HULL_LARGE
 ---------------------------------------------------------------------------------------------------------------------------------------------
 ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"}
 ENT.BloodColor = VJ.BLOOD_COLOR_YELLOW
 
-ENT.HasMeleeAttack = true -- Can this NPC melee attack?
+ENT.HasMeleeAttack = true
 ENT.AnimTbl_MeleeAttack = {ACT_MELEE_ATTACK1, ACT_MELEE_ATTACK1, ACT_MELEE_ATTACK2, "attack_backhand"}
 	-- Apply "ACT_MELEE_ATTACK1" twice because it contains 2 animations
-ENT.MeleeAttackDistance = 90 -- How close an enemy has to be to trigger a melee attack | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-ENT.MeleeAttackDamageDistance = 100 -- How far does the damage go | false = Let the base auto calculate on initialize based on the NPC's collision bounds
-ENT.TimeUntilMeleeAttackDamage = false -- This counted in seconds | This calculates the time until it hits something
+ENT.MeleeAttackDistance = 90
+ENT.MeleeAttackDamageDistance = 100
+ENT.TimeUntilMeleeAttackDamage = false
 
-ENT.HasMeleeAttackKnockBack = true -- If true, it will cause a knockback to its enemy
-ENT.HasExtraMeleeAttackSounds = true -- Set to true to use the extra melee attack sounds
+ENT.HasMeleeAttackKnockBack = true
+ENT.HasExtraMeleeAttackSounds = true
 ENT.DisableFootStepSoundTimer = true
-	-- ====== Sound Paths ====== --
-ENT.SoundTbl_FootStep = {"vj_alienswarm/shieldbug/default01.wav","vj_alienswarm/shieldbug/default02.wav"}
-ENT.SoundTbl_Idle = {"vj_alienswarm/shieldbug/idle01.wav","vj_alienswarm/shieldbug/idle02.wav"}
-ENT.SoundTbl_Alert = {"vj_alienswarm/shieldbug/alert.wav","vj_alienswarm/shieldbug/move_voc01.wav","vj_alienswarm/shieldbug/move_voc02.wav"}
-ENT.SoundTbl_MeleeAttack = {"vj_alienswarm/shieldbug/attack01.wav","vj_alienswarm/shieldbug/attack02.wav","vj_alienswarm/shieldbug/attack03.wav"}
-ENT.SoundTbl_Pain = {"vj_alienswarm/shieldbug/pain01.wav","vj_alienswarm/shieldbug/pain02.wav","vj_alienswarm/shieldbug/move_voc03.wav"}
-ENT.SoundTbl_Death = {"vj_alienswarm/shieldbug/pain01.wav","vj_alienswarm/shieldbug/pain02.wav"}
 
-local sdMeleeMissSwipe = {"vj_alienswarm/boomer/swipe01.wav","vj_alienswarm/boomer/swipe02.wav","vj_alienswarm/boomer/swipe03.wav"}
-local sdMeleeMissSlam = {"vj_alienswarm/shieldbug/stomp01.wav","vj_alienswarm/shieldbug/stomp02.wav"}
+ENT.SoundTbl_FootStep = {"vj_alienswarm/shieldbug/default01.wav", "vj_alienswarm/shieldbug/default02.wav"}
+ENT.SoundTbl_Idle = {"vj_alienswarm/shieldbug/idle01.wav", "vj_alienswarm/shieldbug/idle02.wav"}
+ENT.SoundTbl_Alert = {"vj_alienswarm/shieldbug/alert.wav", "vj_alienswarm/shieldbug/move_voc01.wav", "vj_alienswarm/shieldbug/move_voc02.wav"}
+ENT.SoundTbl_MeleeAttack = {"vj_alienswarm/shieldbug/attack01.wav", "vj_alienswarm/shieldbug/attack02.wav", "vj_alienswarm/shieldbug/attack03.wav"}
+ENT.SoundTbl_Pain = {"vj_alienswarm/shieldbug/pain01.wav", "vj_alienswarm/shieldbug/pain02.wav", "vj_alienswarm/shieldbug/move_voc03.wav"}
+ENT.SoundTbl_Death = {"vj_alienswarm/shieldbug/pain01.wav", "vj_alienswarm/shieldbug/pain02.wav"}
+
+local sdMeleeMissSwipe = {"vj_alienswarm/boomer/swipe01.wav", "vj_alienswarm/boomer/swipe02.wav", "vj_alienswarm/boomer/swipe03.wav"}
+local sdMeleeMissSlam = {"vj_alienswarm/shieldbug/stomp01.wav", "vj_alienswarm/shieldbug/stomp02.wav"}
 
 local SHIELDBUG_MELEE_SWIPE = 0
 local SHIELDBUG_MELEE_SLAM = 1
@@ -63,7 +63,7 @@ function ENT:OnInput(key, activator, caller, data)
 			self.MeleeAttackDamage = 12
 			self.SoundTbl_MeleeAttackMiss = false
 		end
-		self:MeleeAttackCode()
+		self:ExecuteMeleeAttack()
 	elseif key == "shove_roar_hit" then
 		util.ScreenShake(self:GetPos(), 16, 200, 0.5, 1500)
 		if self.HasSounds == true && self.HasAlertSounds == true then
