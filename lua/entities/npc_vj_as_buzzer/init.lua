@@ -16,7 +16,7 @@ ENT.VJ_NPC_Class = {"CLASS_ALIENSWARM"}
 ENT.BloodColor = VJ.BLOOD_COLOR_YELLOW
 
 ENT.HasMeleeAttack = true
-ENT.DisableMeleeAttackAnimation = true
+ENT.AnimTbl_MeleeAttack = false
 ENT.MeleeAttackDistance = 30
 ENT.MeleeAttackDamageDistance = 60
 ENT.TimeUntilMeleeAttackDamage = 0.3

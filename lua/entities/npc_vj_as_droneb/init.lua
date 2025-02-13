@@ -19,10 +19,6 @@ ENT.MeleeAttackDamageDistance = 100
 ENT.TimeUntilMeleeAttackDamage = false
 ENT.MeleeAttackDamage = 15
 ENT.MeleeAttackBleedEnemy = true
-ENT.MeleeAttackBleedEnemyChance = 3
-ENT.MeleeAttackBleedEnemyDamage = 1
-ENT.MeleeAttackBleedEnemyTime = 1
-ENT.MeleeAttackBleedEnemyReps = 4
 
 ENT.DeathCorpseSetBoneAngles = false
 ENT.HasDeathAnimation = true
@@ -31,7 +27,7 @@ ENT.DeathAnimationChance = 2
 ENT.HasExtraMeleeAttackSounds = true
 ENT.DisableFootStepSoundTimer = true
 
-ENT.CanFlinch = 1
+ENT.CanFlinch = true
 ENT.AnimTbl_Flinch = ACT_SMALL_FLINCH
 
 ENT.SoundTbl_FootStep = {"vj_alienswarm/drone/footstep1a.wav", "vj_alienswarm/drone/footstep1b.wav"}
