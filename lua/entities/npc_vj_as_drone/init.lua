@@ -39,7 +39,7 @@ ENT.SoundTbl_Pain = {"vj_alienswarm/drone/pain01.wav", "vj_alienswarm/drone/pain
 ENT.SoundTbl_Death = {"vj_alienswarm/drone/deathfire01.wav", "vj_alienswarm/drone/deathfire02.wav", "vj_alienswarm/drone/deathfire03.wav", "vj_alienswarm/drone/deathfire04.wav", "vj_alienswarm/drone/death01.wav"}
 local sdBurrow = {"vj_alienswarm/drone/burrow01.wav", "vj_alienswarm/drone/burrow02.wav", "vj_alienswarm/drone/burrow03.wav", "vj_alienswarm/drone/burrow04.wav"}
 
-ENT.FootStepSoundLevel = 55
+ENT.FootstepSoundLevel = 55
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Init()
 	self:SetCollisionBounds(Vector(20, 20, 60), Vector(-20, -20, 0))

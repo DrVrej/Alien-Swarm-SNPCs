@@ -17,7 +17,7 @@ ENT.MeleeAttackDamage = 25
 ENT.GeneralSoundPitch1 = 60
 ENT.GeneralSoundPitch2 = 70
 
-ENT.FootStepSoundLevel = 60
+ENT.FootstepSoundLevel = 60
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Init()
 	self:SetCollisionBounds(Vector(30, 30, 70), Vector(-30, -30, 0))

@@ -38,7 +38,7 @@ ENT.SoundTbl_MeleeAttackMiss = {"vj_alienswarm/drone/swipe01.wav", "vj_alienswar
 ENT.SoundTbl_Pain = {"vj_alienswarm/drone/pain01.wav", "vj_alienswarm/drone/pain02.wav", "vj_alienswarm/drone/pain03.wav", "vj_alienswarm/drone/pain04.wav", "vj_alienswarm/drone/pain05.wav", "vj_alienswarm/drone/pain06.wav"}
 ENT.SoundTbl_Death = {"vj_alienswarm/drone/deathfire01.wav", "vj_alienswarm/drone/deathfire02.wav", "vj_alienswarm/drone/deathfire03.wav", "vj_alienswarm/drone/deathfire04.wav", "vj_alienswarm/drone/death01.wav"}
 
-ENT.FootStepSoundLevel = 55
+ENT.FootstepSoundLevel = 55
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Init()
 	self:SetSurroundingBounds(Vector(60, 60, 100), Vector(-60, -60, 0))

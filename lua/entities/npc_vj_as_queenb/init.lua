@@ -38,7 +38,7 @@ ENT.SoundTbl_Death = "vj_alienswarm/drone/die_fancy.wav"
 ENT.GeneralSoundPitch1 = 50
 ENT.GeneralSoundPitch2 = 50
 
-ENT.FootStepSoundLevel = 100
+ENT.FootstepSoundLevel = 100
 ENT.AlertSoundLevel = 100
 ENT.IdleSoundLevel = 100
 ENT.MeleeAttackSoundLevel = 100
