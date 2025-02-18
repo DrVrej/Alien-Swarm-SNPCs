@@ -35,8 +35,7 @@ ENT.SoundTbl_MeleeAttackMiss = {"vj_alienswarm/boomer/attack01.wav", "vj_aliensw
 ENT.SoundTbl_Pain = {"vj_alienswarm/shieldbug/pain01.wav", "vj_alienswarm/shieldbug/pain02.wav", "vj_alienswarm/shieldbug/move_voc03.wav"}
 ENT.SoundTbl_Death = "vj_alienswarm/drone/die_fancy.wav"
 
-ENT.GeneralSoundPitch1 = 50
-ENT.GeneralSoundPitch2 = 50
+ENT.MainSoundPitch = 50
 
 ENT.FootstepSoundLevel = 100
 ENT.AlertSoundLevel = 100

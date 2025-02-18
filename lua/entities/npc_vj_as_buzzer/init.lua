@@ -31,8 +31,7 @@ ENT.SoundTbl_BeforeMeleeAttack = {"vj_alienswarm/buzzer/attack01.wav", "vj_alien
 ENT.SoundTbl_Pain = "vj_alienswarm/buzzer/pain.wav"
 ENT.SoundTbl_Death = {"vj_alienswarm/buzzer/death01.wav", "vj_alienswarm/buzzer/death02.wav"}
 
-ENT.GeneralSoundPitch1 = 100
-ENT.GeneralSoundPitch2 = 100
+ENT.MainSoundPitch = 100
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:Init()
 	self:SetCollisionBounds(Vector(10, 10, 10), Vector(-10, -10, -10))

@@ -14,8 +14,7 @@ ENT.MeleeAttackDistance = 90
 ENT.MeleeAttackDamageDistance = 100
 ENT.MeleeAttackDamage = 25
 
-ENT.GeneralSoundPitch1 = 60
-ENT.GeneralSoundPitch2 = 70
+ENT.MainSoundPitch = VJ.SET(60, 70)
 
 ENT.FootstepSoundLevel = 60
 ---------------------------------------------------------------------------------------------------------------------------------------------
