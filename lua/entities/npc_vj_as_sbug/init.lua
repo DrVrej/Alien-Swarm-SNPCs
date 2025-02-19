@@ -127,7 +127,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:TranslateActivity(act)
 	-- Defense mode
-	if self.LatestEnemyDistance < 1000 && (self:GetNPCState() == NPC_STATE_ALERT or self:GetNPCState() == NPC_STATE_COMBAT) then
+	if self.EnemyData.Distance < 1000 && (self:GetNPCState() == NPC_STATE_ALERT or self:GetNPCState() == NPC_STATE_COMBAT) then
 		self.Shieldbug_Defending = true
 		if act == ACT_IDLE then
 			return ACT_COWER
