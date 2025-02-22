@@ -102,7 +102,7 @@ function ENT:OnCallForHelp(ally, isFirst)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnFlinch(dmginfo, hitgroup, status)
-	if status == "PriorExecution" then
+	if status == "Init" then
 		local dmgAmt = dmginfo:GetDamage()
 		if dmgAmt > 25 then
 			self.AnimTbl_Flinch = "flinch_big"
@@ -115,7 +115,7 @@ function ENT:OnFlinch(dmginfo, hitgroup, status)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnDeath(dmginfo, hitgroup, status)
-	if status == "Initial" then
+	if status == "Init" then
 		-- High damage force, don't play death animation
 		if dmginfo:GetDamageForce():Length() > 10000 then
 			self.HasDeathAnimation = false

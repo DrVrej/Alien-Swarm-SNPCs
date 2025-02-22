@@ -54,7 +54,7 @@ function ENT:OnInput(key, activator, caller, data)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnFlinch(dmginfo, hitgroup, status)
-	if status == "PriorExecution" then
+	if status == "Init" then
 		if dmginfo:GetDamage() > 20 then
 			self.AnimTbl_Flinch = ACT_BIG_FLINCH
 		else
@@ -65,7 +65,7 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnDeath(dmginfo, hitgroup, status)
 	-- High damage force, don't play death animation
-	if status == "Initial" && dmginfo:GetDamageForce():Length() > 10000 then
+	if status == "Init" && dmginfo:GetDamageForce():Length() > 10000 then
 		self.HasDeathAnimation = false
 	end
 end
