@@ -152,11 +152,13 @@ function ENT:OnAlert(ent)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnMeleeAttack_BeforeStartTimer(seed)
-	if self.Shieldbug_Defending then
-		self.AnimTbl_MeleeAttack = self.Shieldbug_AnimAttackDef
-	else
-		self.AnimTbl_MeleeAttack = animAttackReg
+function ENT:OnMeleeAttack(status, enemy)
+	if status == "Init" then
+		if self.Shieldbug_Defending then
+			self.AnimTbl_MeleeAttack = self.Shieldbug_AnimAttackDef
+		else
+			self.AnimTbl_MeleeAttack = animAttackReg
+		end
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
