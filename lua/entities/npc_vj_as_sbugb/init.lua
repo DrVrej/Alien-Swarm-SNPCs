@@ -67,7 +67,7 @@ function ENT:OnInput(key, activator, caller, data)
 	elseif key == "shove_roar_hit" then
 		util.ScreenShake(self:GetPos(), 16, 200, 0.5, 1500)
 		if self.HasSounds == true && self.HasAlertSounds == true then
-			VJ.EmitSound(self,"vj_alienswarm/shieldbug/stomp01.wav", 80, math.random(90, 100))
+			VJ.EmitSound(self, "vj_alienswarm/shieldbug/stomp01.wav", 80, math.random(90, 100))
 		end
 	end
 end
