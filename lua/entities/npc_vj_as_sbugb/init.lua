@@ -90,8 +90,8 @@ function ENT:MeleeAttackKnockbackVelocity(hitEnt)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnMeleeAttack_Miss()
-	if self.Shieldbug_MeleeType == SHIELDBUG_MELEE_SLAM then
+function ENT:OnMeleeAttackExecute(status, ent, isProp)
+	if status == "Miss" && self.Shieldbug_MeleeType == SHIELDBUG_MELEE_SLAM then
 		util.ScreenShake(self:GetPos(), 8, 100, 0.5, 1500)
 	end
 end

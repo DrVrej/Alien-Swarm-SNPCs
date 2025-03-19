@@ -166,8 +166,10 @@ function ENT:MeleeAttackKnockbackVelocity(hitEnt)
 	return self:GetForward() * math.random(470, 490) + self:GetUp() * 50
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:CustomOnMeleeAttack_Miss()
-	util.ScreenShake(self:GetPos(), 16, 100, 0.5, 1500)
+function ENT:OnMeleeAttackExecute(status, ent, isProp)
+	if status == "Miss" then
+		util.ScreenShake(self:GetPos(), 16, 100, 0.5, 1500)
+	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
 function ENT:OnDamaged(dmginfo, hitgroup, status)
