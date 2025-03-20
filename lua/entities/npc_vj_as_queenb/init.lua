@@ -67,6 +67,6 @@ function ENT:OnAlert(ent)
 	self:PlayAnim("high_scream", true, false, true)
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:MeleeAttackKnockbackVelocity(hitEnt)
+function ENT:MeleeAttackKnockbackVelocity(ent)
 	return self:GetForward() * math.random(250, 300) + self:GetUp() * math.random(250, 300)
 end

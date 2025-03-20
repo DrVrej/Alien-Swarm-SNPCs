@@ -80,7 +80,7 @@ function ENT:OnAlert(ent)
 	end
 end
 ---------------------------------------------------------------------------------------------------------------------------------------------
-function ENT:MeleeAttackKnockbackVelocity(hitEnt)
+function ENT:MeleeAttackKnockbackVelocity(ent)
 	if self.Shieldbug_MeleeType == SHIELDBUG_MELEE_SLAM then
 		return self:GetForward() * math.random(170, 190) + self:GetUp() * math.random(200, 210)
 	elseif self.Shieldbug_MeleeType == SHIELDBUG_MELEE_CHARGE then
